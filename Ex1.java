@@ -12,6 +12,13 @@
  * You should implement the following static functions:
  */
 public class Ex1 {
+    public static int po (int x, int y){
+        int ans =1;
+        for (int i = 0; i<y; i++){
+            ans = ans *x;
+        }
+        return ans;
+    }
     private static int char2int(char c)
     {
         char[] nums = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
@@ -37,11 +44,19 @@ public class Ex1 {
      * @return
      */
     public static int number2Int(String num) {
-        int ans = -1;
-        // add your code here
-
-        ////////////////////
-        return ans;
+       // int ans = -1;
+        if (!isNumber(num)){return  -1;}
+        if(is_digits(num)){return Integer.parseInt(num);}
+        String num_Value = num.substring(0,num.indexOf("b"));
+        char base = num.charAt(num.indexOf("b")+1);
+        int sum = 0;
+        int power = num_Value.length()-1;
+        for (char c: num_Value.toCharArray())
+        {
+            sum = sum + (char2int(c)*po(char2int(base),power));
+            power--;
+        }
+        return sum;
     }
     /**
      * This static function checks if the given String (g) is in a valid "number" format.
@@ -65,7 +80,6 @@ public class Ex1 {
             if(char2int(c)==-1&&c=='b'){return false;}
         }
         if (num1.indexOf("b")!=num1.length()-2){return false;}
-
         if(char2int(base)==-1){return false;}
         return ans;
     }
@@ -79,13 +93,18 @@ public class Ex1 {
      * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
      */
     public static String int2Number(int num, int base) {
-        String ans = "";
-        // add your code here
-
-        ////////////////////
-        return ans;
+        StringBuilder bld = new StringBuilder();
+        String temp_str = String.valueOf(num);
+        while (num!=0)
+        {
+           bld.append(num % base);
+           num =  num/base;
+        }
+        bld.reverse();
+        bld.append("b");
+        bld.append(base);
+        return bld.toString();
     }
-
     /**
      * Checks if the two numbers have the same value.
      * @param n1 first number
@@ -93,11 +112,7 @@ public class Ex1 {
      * @return true iff the two numbers have the same values.
      */
     public static boolean equals(String n1, String n2) {
-        boolean ans = true;
-        // add your code here
-
-        ////////////////////
-        return ans;
+        return number2Int(n1)==number2Int(n2);
     }
 
     /**
@@ -106,13 +121,18 @@ public class Ex1 {
      * Note: you can assume that the array is not null and is not empty, yet it may contain null or none-valid numbers (with value -1).
      * @param arr an array of numbers
      * @return the index in the array in with the largest number (in value).
-     *
      */
-    public static int maxIndex(String[] arr) {
+    public static int maxIndex(String[] arr)
+    {
         int ans = 0;
-        // add your code here
 
-        ////////////////////
+        for(int i = 0; i<=arr.length-1;i++)
+        {
+            if (number2Int(arr[i])>number2Int(arr[ans]))
+            {
+                ans = i;
+            }
+        }
         return ans;
     }
 }
