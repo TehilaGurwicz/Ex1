@@ -55,23 +55,20 @@ public class Ex1Test {
     void number2int()
     {
         String num =  "1010b2";
-        System.out.println(Ex1.number2Int(num));
-    }
-    @Test
-    void power()
-    {
-        System.out.println(Ex1.po(2,3));
+        String num1 = "1000b2";
+        System.out.println(Ex1.number2Int(num1));
+
     }
     @Test
     void int2number()
     {
-        int x = 12;
+        int x = 14;
         System.out.println(Ex1.int2Number(x,2));
     }
     @Test
     void maxIndex()
     {
-        String [] arr = {"101b2","AbG","12323","999AAbG"};
+        String [] arr = {"101b2","1000b2","12323","99"};
         System.out.println(Ex1.maxIndex(arr));
     }
 

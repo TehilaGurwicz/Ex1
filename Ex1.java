@@ -1,4 +1,5 @@
 //package assignments.ex1;
+// Basa"d!
 /**
  * This class represents a simple solution for Ex1.
  * As defined here: https://docs.google.com/document/d/1AJ9wtnL1qdEs4DAKqBlO1bXCM6r6GJ_J/r/edit/edit
@@ -72,12 +73,13 @@ public class Ex1 {
         if(num1.contains("b"))
         { num_Value = num1.substring(0,num1.indexOf("b"));}
         int countb = 0;
+        if(num_Value.isEmpty()){return false;}
         for (char c: num_Value.toCharArray())// loop on string and checks different statements
-        {
+        {   if(char2int(c)==-1){return false;}
             if(char2int(c)>=char2int(base)) {return false;}
             if (c=='b'){countb++;}
             if (countb>1){return false;}
-            if(char2int(c)==-1&&c=='b'){return false;}
+            //if(char2int(c)==-1&&c=='b'){return false;}
         }
         if (num1.indexOf("b")!=num1.length()-2){return false;}
         if(char2int(base)==-1){return false;}
