@@ -43,7 +43,7 @@ public class Ex1Test {
         assertEquals("", Ex1.int2Number(101000, 0));
         assertEquals("", Ex1.int2Number(-8, 4));
         assertEquals("99bG", Ex1.int2Number(153, 16));
-        //assertEquals("C0bF",Ex1.int2Number(180,15));// REVERS 1 AND 2
+        assertEquals("C0bF",Ex1.int2Number(180,15));// REVERS 1 AND 2
         assertEquals("489bD", Ex1.int2Number(789, 13));
 
 
@@ -134,5 +134,11 @@ public class Ex1Test {
         assertEquals(1,Ex1.po(0,0));
         assertEquals(4,Ex1.po(4,1));
         assertEquals(1,Ex1.po(2,-4));
+    }
+    @Test
+    void test()
+    {
+        System.out.println(Ex1.int2Number(12,2));
+        System.out.println(Ex1.int2char(12));
     }
 }

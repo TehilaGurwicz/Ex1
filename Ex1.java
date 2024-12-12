@@ -29,6 +29,14 @@ public class Ex1 {
         }
         return -1;
      }
+     public static char int2char(int x)
+     {   if (x>=0&&x<=16)
+     {
+         char[] nums = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
+         return nums[x];}
+
+         return 'X';
+     }
      public static boolean is_digits (String c)
      {
          for (char s: c.toCharArray())
@@ -96,31 +104,19 @@ public class Ex1 {
      * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
      */
     public static String int2Number(int num, int base) {
-       String ans = "";
-       char[] bigBase ={'A','B','C','D','E','F','G'};
-       if (base < 2||base > 16||num<0)
-       {return ans;}
+        if (base <2){return "";}
         StringBuilder bld = new StringBuilder();
         String temp_str = String.valueOf(num);
         while (num!=0)
         {
-           bld.append(num % base);
+            int temp = num%base;
+           bld.append(int2char(temp));
            num =  num/base;
         }
         bld.reverse();
         bld.append("b");
-        if (base >= 10 && base <= 16){
-
-            for (int i=0 ,j=10; i<7 && j<=16;i++,j++){
-                if(base ==j) {
-                    char baseBig =bigBase[i];
-                    bld.append(baseBig);
-                    return bld.toString();
-                }
-            }
-
-        }
-        bld.append(base);
+        bld.append(int2char(base));
+        if (!isNumber((bld.toString()))){return "";}
         return bld.toString();
     }
     /**
