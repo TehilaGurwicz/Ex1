@@ -21,7 +21,7 @@ public class Ex1Main
                 // add your code here
 
                 /////////////////////
-        System.out.println(Ex1.isNumber("546372"));
+        System.out.println(Ex1.isNumber("13b"));
             }
         }
        // System.out.println("quiting now...");

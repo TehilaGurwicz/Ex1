@@ -20,7 +20,7 @@ public class Ex1 {
         }
         return ans;
     }
-    private static int char2int(char c)
+    public static int char2Int(char c)
     {
         char[] nums = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G'};
         for (int i = 0; i<nums.length;i++)
@@ -29,11 +29,11 @@ public class Ex1 {
         }
         return -1;
      }
-     private static boolean is_digits (String c)
+     public static boolean is_digits (String c)
      {
          for (char s: c.toCharArray())
          {
-            if(!Character.isDigit((s)))
+            if(!Character.isDigit((s)))// a method for checking if a char is a digit.
             {  return false;}
          }
          return true;
@@ -47,14 +47,14 @@ public class Ex1 {
     public static int number2Int(String num) {
        // int ans = -1;
         if (!isNumber(num)){return  -1;}
-        if(is_digits(num)){return Integer.parseInt(num);}
+        if(is_digits(num)){return Integer.parseInt(num);}// return the string as integers
         String num_Value = num.substring(0,num.indexOf("b"));
         char base = num.charAt(num.indexOf("b")+1);
         int sum = 0;
         int power = num_Value.length()-1;
         for (char c: num_Value.toCharArray())
         {
-            sum = sum + (char2int(c)*po(char2int(base),power));
+            sum = sum + (char2Int(c)*po(char2Int(base),power));
             power--;
         }
         return sum;
@@ -68,6 +68,7 @@ public class Ex1 {
     public static boolean isNumber(String num1) {
         boolean ans = true;
         if (is_digits(num1)){return true;}// return true if only digits (decimal)
+        if (num1.indexOf("b")!=num1.length()-2){return false;}
         char base = num1.charAt(num1.indexOf("b")+1);
         String num_Value = num1;
         if(num1.contains("b"))
@@ -75,14 +76,14 @@ public class Ex1 {
         int countb = 0;
         if(num_Value.isEmpty()){return false;}
         for (char c: num_Value.toCharArray())// loop on string and checks different statements
-        {   if(char2int(c)==-1){return false;}
-            if(char2int(c)>=char2int(base)) {return false;}
+        {   if(char2Int(c)==-1){return false;}
+            if(char2Int(c)>=char2Int(base)) {return false;}
             if (c=='b'){countb++;}
             if (countb>1){return false;}
-            //if(char2int(c)==-1&&c=='b'){return false;}
+            //if(char2Int(c)==-1&&c=='b'){return false;}
         }
-        if (num1.indexOf("b")!=num1.length()-2){return false;}
-        if(char2int(base)==-1){return false;}
+        //if (num1.indexOf("b")!=num1.length()-2){return false;}
+        if(char2Int(base)==-1){return false;}
         return ans;
     }
 
@@ -95,6 +96,10 @@ public class Ex1 {
      * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
      */
     public static String int2Number(int num, int base) {
+       String ans = "";
+       char[] bigBase ={'A','B','C','D','E','F','G'};
+       if (base < 2||base > 16||num<0)
+       {return ans;}
         StringBuilder bld = new StringBuilder();
         String temp_str = String.valueOf(num);
         while (num!=0)
@@ -104,6 +109,17 @@ public class Ex1 {
         }
         bld.reverse();
         bld.append("b");
+        if (base >= 10 && base <= 16){
+
+            for (int i=0 ,j=10; i<7 && j<=16;i++,j++){
+                if(base ==j) {
+                    char baseBig =bigBase[i];
+                    bld.append(baseBig);
+                    return bld.toString();
+                }
+            }
+
+        }
         bld.append(base);
         return bld.toString();
     }
